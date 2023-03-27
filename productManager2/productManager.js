@@ -1,4 +1,3 @@
-const { transcode } = require('buffer');
 const fs = require ('fs')
 
 class Product{
@@ -139,9 +138,7 @@ class ProductManager{
             await this.getProducts()
             const productId = this.products.findIndex((p) => p.id === id);
             this.products[productId] = { ...this.products[productId], ...campos };
-            fs.writeFileSync('productos.json', JSON.stringify(this.products));
-
-
+            await fs.writeFileSync('productos.json', JSON.stringify(this.products));
         } catch (error) {
             console.log(error)
         }
@@ -151,14 +148,15 @@ class ProductManager{
 
 
 let manager = new ProductManager('./productos.JSON')
-// manager.addProduct(new Product('roque','queso',100,'./quesos',10,100))
+// manager.addProduct({nombre:'hola'})
 
 
-//  manager.getProductById(10)
+
+//  manager.getProductById(2)
 //  .then(res => {
 //      console.log(res)
 //  })
 
 //manager.deleteProduct(10)
-manager.updateProduct (2,{title:'bondiola',description:'carniceria'})
+// manager.updateProduct (2,{title:'bondiola',description:'carniceria'})
 
