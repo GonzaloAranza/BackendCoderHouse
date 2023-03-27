@@ -152,10 +152,10 @@ let manager = new ProductManager('./productos.JSON')
 
 
 
-//  manager.getProductById(2)
-//  .then(res => {
-//      console.log(res)
-//  })
+  manager.getProductById(2)
+  .then(res => {
+      console.log(res)
+  })
 
 //manager.deleteProduct(10)
 // manager.updateProduct (2,{title:'bondiola',description:'carniceria'})
