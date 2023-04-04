@@ -1,21 +1,27 @@
-const fs = require ('fs')
+import fs from 'fs';
 
 class Product{
 
     title = '';
     description = '';
     price = 0;
-    thumbnail = '';
+    thumbnail = [];
     code = 0;
     stock = 0;
+    status = true;
+    category = '';
+    
 
-    constructor (title,description,price,thumbnail,code,stock){
+
+    constructor (title,description,price,thumbnail,code,stock,status = true,category){
        this.title = title;
        this.description = description;
        this.price = price;
        this.thumbnail = thumbnail;
        this.code = code;
        this.stock = stock; 
+       this.status = status;
+       this.category = category
     }
 }
 
@@ -117,16 +123,16 @@ class ProductManager{
     deleteProduct = async (id) => {
         try {
             await this.getProducts()
-
-            const productId = this.products.findIndex((p) => p.id === id);
-
+           const productId = this.products.findIndex((p) => p.id === id);
+           
             if(productId === -1)
                 throw Error ('index out of range')
 
-            this.products.splice(productId,1)
+            let productRemoved =  this.products.splice(productId,1)
 
             await fs.promises.writeFile(this.#path,JSON.stringify(this.products))
-         
+            
+            return productRemoved
         }  catch (error) {
             console.log(error)
         }
@@ -146,7 +152,8 @@ class ProductManager{
         }
     }
 
+    
 }
 
-
-module.exports = { ProductManager };
+export { Product };
+export default ProductManager ;

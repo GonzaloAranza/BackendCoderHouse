@@ -15,12 +15,18 @@ app.get('/products', async (req, res) => {
     products = products.slice(0, limit); // Devuelve solo el número de productos solicitados
   }
 
-})
+  res.json({ products });
+
+});
 
 app.get('/products/:pid', async (req, res) => {
+  try{
   const productId = req.params.pid;
   const product = await productManager.getProductById(Number(productId));
   res.json(product);
+  }catch(e){
+    res.send(e)
+  }
 });
 
 
