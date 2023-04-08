@@ -55,6 +55,8 @@ class ShoppingCart {
     }
 
     async getProductByShoppingCartId(id) {
+        
+
         try {
 
             const data = await this.readFile();
@@ -82,7 +84,9 @@ class ShoppingCart {
 
     async readFile() {
         try {
+            
             const data = await fs.readFile(this.path, { encoding: 'utf-8' });
+        //    console.log(data)
             return data;
         } catch (error) {
             throw error;
