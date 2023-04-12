@@ -26,7 +26,6 @@ app.use('/api/products',productsRouter)
 app.use('/api/carts',cartsRouter)
 app.use('/',homeRouter)
 app.use('/realTimeProducts',realTimeRouter)
-app.use('/products',realTimeRouter)
 
 
 //views:

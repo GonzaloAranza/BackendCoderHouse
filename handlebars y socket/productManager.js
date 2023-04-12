@@ -129,12 +129,12 @@ class ProductManager{
                 throw Error ('index out of range')
 
             let productRemoved =  this.products.splice(productId,1)
-
             await fs.promises.writeFile(this.#path,JSON.stringify(this.products))
             
             return productRemoved
         }  catch (error) {
-            console.log(error)
+            throw ({Error: error.toString()})
+
         }
         
     }

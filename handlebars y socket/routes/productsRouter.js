@@ -97,9 +97,9 @@ router.get('/', async (req, res) => {
         let productRemoved = await productManager.deleteProduct(productId);
         
         const io = req.app.get("io");
-        io.emit("productRemoved", Number(pid));
+        io.emit("productRemoved", pid);
         res.send(productRemoved);
-
+    
       } catch (error) {
         res.status(404).send(error);
       }
