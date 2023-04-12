@@ -59,8 +59,11 @@ router.get('/', async (req, res) => {
 
       const product = new Product(title, description, price, thumbnail, code, stock, status, category);
       const productManager = new ProductManager('productos.json');
-      await productManager.addProduct(product);
-      res.send(product);
+      const newProduct = await productManager.addProduct(product);
+      
+      res.send(newProduct);
+      const io = req.app.get("io");
+      io.emit('productCreated', newProduct);
     } catch (error) {
       res.status(500).send(error);
     }
@@ -97,7 +100,7 @@ router.get('/', async (req, res) => {
         let productRemoved = await productManager.deleteProduct(productId);
         
         const io = req.app.get("io");
-        io.emit("productRemoved", pid);
+        io.emit("productRemoved", productId);
         res.send(productRemoved);
     
       } catch (error) {

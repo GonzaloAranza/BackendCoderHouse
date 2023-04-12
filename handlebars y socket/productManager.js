@@ -85,14 +85,15 @@ class ProductManager{
     }
 
     addProduct = async (product) => {
-
+        try{
         await this.getProducts()
 
         const validateProduct = this.checkIfObjectIsAProduct(product)
-        this.products.push({...validateProduct,id : ++this.#id})
-        
-        try{
-            await fs.promises.writeFile(this.#path,JSON.stringify(this.products),'utf-8')       
+        const newProduct = {...validateProduct,id : ++this.#id}
+        this.products.push(newProduct)
+        await fs.promises.writeFile(this.#path,JSON.stringify(this.products),'utf-8')    
+        return newProduct
+
         }catch(e){
             console.log('Error:',e)
         }
