@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "title": "Remera Overside",
+    "description": "Remera de algodon overside",
+    "price": 9999,
+    "thumbnail": "URL",
+    "code": "remov1a",
+    "stock": 99,
+    "status": true,
+    "category": "ropa-arriba"
+  },
+  {
+    "id": 2,
+    "title": "Jean",
+    "description": "Pantalon de jean celeste",
+    "price": 11300,
+    "thumbnail": "URL",
+    "code": "jean1a",
+    "stock": 100,
+    "status": true,
+    "category": "ropa-abajo"
+  },
+  {
+    "id": 3,
+    "title": "Camisa Rinbow",
+    "description": "Camisa manga larga a rayas",
+    "price": 8700,
+    "thumbnail": "URL",
+    "code": "cami1a",
+    "stock": 100,
+    "status": true,
+    "category": "ropa-arriba"
+  },
+  {
+    "id": 4,
+    "title": "Malla lisa",
+    "description": "Malla lisa color negro",
+    "price": 5700,
+    "thumbnail": "URL",
+    "code": "mall1a",
+    "stock": 100,
+    "status": true,
+    "category": "ropa-abajo"
+  },
+  {
+    "id": 5,
+    "title": "Gorra",
+    "description": "Gorra trucker",
+    "price": 7500,
+    "thumbnail": "URL",
+    "code": "gorr1a",
+    "stock": 100,
+    "status": true,
+    "category": "ropa-cabeza"
+  },
+  {
+    "id": 6,
+    "title": "Medias 3/4",
+    "description": "Medias 3/4 de algodon",
+    "price": 2500,
+    "thumbnail": "URL",
+    "code": "med1a",
+    "stock": 100,
+    "status": true,
+    "category": "ropa-pies"
+  },
+  {
+    "id": 7,
+    "title": "Musculosa",
+    "description": "Musculosa de algodon",
+    "price": 4500,
+    "thumbnail": "URL",
+    "code": "mus1a",
+    "stock": 100,
+    "status": true,
+    "category": "ropa-arriba"
+  },
+  {
+    "id": 8,
+    "title": "Jogger",
+    "description": "Pantalon largo con puño",
+    "price": 6249,
+    "thumbnail": "URL",
+    "code": "jog1a",
+    "stock": 100,
+    "status": true,
+    "category": "ropa-abajo"
+  },
+  {
+    "id": 9,
+    "title": "Chomba",
+    "description": "Chomba de piquet",
+    "price": 3800,
+    "thumbnail": "URL",
+    "code": "cho1a",
+    "stock": 100,
+    "status": true,
+    "category": "ropa-arriba"
+  },
+  {
+    "id": 10,
+    "title": "Bermuda",
+    "description": "Bermuda de jean",
+    "price": 8100,
+    "thumbnail": "URL",
+    "code": "ber1a",
+    "stock": 100,
+    "status": true,
+    "category": "ropa-abajo"
+  }
+]
