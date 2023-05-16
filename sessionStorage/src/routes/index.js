@@ -1,6 +1,6 @@
-import products from './products.js';
-import shoppingCart from './shoppingCart.js';
-import users from './users.js';
-import session from './session.js';
+import products from './productsRouter.js';
+import shoppingCart from './cartsRouter.js';
+import users from './userRouter.js';
+import session from './sessionRouter.js';
 
 export { products, shoppingCart, users, session };
