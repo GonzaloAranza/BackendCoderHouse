@@ -1,4 +1,3 @@
-
 import UserManager from "./userManager.js";
 
 class SessionManager {
