@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose";
+import  paginate  from "mongoose-paginate-v2";
 
 const UserSchema = new Schema({
     firstName: {
@@ -21,7 +22,15 @@ const UserSchema = new Schema({
     password: {
         type: String,
         required: [true, "El password es obligatorio"]
+    },
+    role:{
+        type: String,
+        enum:['admin','user'],
+        default:'user'
     }
 });
+
+
+UserSchema.plugin(paginate)
 
 export default model('User', UserSchema);

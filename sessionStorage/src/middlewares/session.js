@@ -6,7 +6,7 @@ const sessionMiddleware = (req = request, res = response, next) => {
     const sessionHandler = session({
         store: mongoStore.create({
             mongoUrl: `${process.env.MONGO_DB_URI}${process.env.MONGO_DB_NAME}`,
-            ttl: 10
+            ttl: 60
         }),
         saveUninitialized: false,
         secret: 'secretstring',

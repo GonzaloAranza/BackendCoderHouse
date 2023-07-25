@@ -1,41 +1,43 @@
-import UserDao from "../daos/userDao.js";
+import UserMongooseDao from "../daos/userDao.js";
 
-class UserManager {
+class UserManager
+{
+  constructor()
+  {
+     this.userDao = new UserMongooseDao();
+  }
 
-    constructor() {
-        this.dao = new UserDao();
-    }
+  async paginate(criteria)
+  {
+    return this.userDao.paginate(criteria);
+  }
 
-    async getOne(email) {
-        try {
-            const userExist = await this.dao.getOne(email);
-            if (userExist) throw new Error(`El email ${email} ya se encuentra registrado.`);
+  async getOneByEmail(email)
+  {
+    return this.userDao.getOneByEmail(email);
+  }
 
-            return userExist;
-        } catch (error) {
-            throw error;
-        }
-    };
+  async getOne(id)
+  {
+    return this.userDao.getOne(id);
+  }
 
-    async create(user) {
-        try {
-            await this.getOne(user.email);
-            return this.dao.create(user);
-        } catch (error) {
-            throw error;
-        }
-    };
+  async create(data)
+  {
+    const user = await this.userDao.create(data);
 
-    async userValidate(user) {
-        try {
-            const validate = await this.dao.validateUser(user);
-            if (!validate) throw new Error(`El email ${email} ya se encuentra registrado.`);
+    return { ...user, password: undefined };
+  }
 
-            return validate;
-        } catch (error) {
-            console.log(error);
-        }
-    }
+  async updateOne(id, data)
+  {
+    return this.userDao.updateOne(id, data);
+  }
+
+  async deleteOne(id)
+  {
+    return this.userDao.deleteOne(id);
+  }
 }
 
 export default UserManager;

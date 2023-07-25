@@ -2,7 +2,7 @@ import { Router } from "express";
 import { check } from "express-validator";
 import inputsValidation from "../middlewares/inputsValidate.js";
 import { productExist, cartExist } from "../helpers/dbValidators.js";
-import { getCartById, postCart, postProductByCartId, deleteCart, deleteItem, putProductByCartId, putProductsByCartId } from "../controllers/shoppingCart.js";
+import { getCartById, postCart, postProductByCartId, deleteCart, deleteItem, putProductByCartId, putProductsByCartId } from "../controllers/cartController.js";
 
 const router = Router();
 

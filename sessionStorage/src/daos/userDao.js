@@ -1,53 +1,97 @@
-import User from "../models/userSchema.js";
+import userSchema from "../models/userSchema.js";
 
-class UserDao {
-    async getOne(email) {
-        try {
-            const document = await User.findOne({ email });
-            if (!document) return null;
+class UserDao
+{
+  async paginate(criteria)
+  {
+    const { limit = 10, page = 0 } = criteria;
+    const userDocuments = await userSchema.paginate({}, { limit, page });
 
-            const { _id, __v, ...rest } = document;
-            return {
-                id: _id,
-                ...rest
-            }
-        } catch (error) {
-            console.error(error);
-            throw error;
-        }
+    userDocuments.docs = userDocuments.docs.map(document => ({
+      id: document._id,
+      firstName: document.firstName,
+      lastName: document.lastName,
+      email: document.email,
+      age: document.age
+    }));
+
+    return userDocuments;
+  }
+
+  async getOne(id)
+  {
+    const userDocument = await userSchema.findOne({ _id: id });
+
+    if(!userDocument)
+    {
+      throw new Error('User dont exist.');
     }
 
-    async create(user) {
-        try {
-            const document = await User.create(user);
-            const { _id, password, __v } = document;
-            return {
-                id: _id,
-                firstName: document.firstName,
-                lastName: document.lastName,
-                email: document.document,
-                age: document.age
-            }
-        } catch (error) {
-            console.error(error);
-            throw error;
-        }
+    return {
+        id: userDocument?._id,
+        firstName: userDocument?.firstName,
+        lastName: userDocument?.lastName,
+        email: userDocument?.email,
+        age: userDocument?.age,
+        password: userDocument?.password
+    }
+  }
+
+  async getOneByEmail(email)
+  {
+    const userDocument = await userSchema.findOne({ email });
+
+    if(!userDocument)
+    {
+      throw new Error('User dont exist.');
     }
 
-    async validateUser({ email, password }) {
-        try {
-            const document = await User.findOne({ email, password });
-
-            if (!document) return null;
-            return {
-                id: document._id,
-                email: document.email
-            };
-        } catch (error) {
-            console.error(error);
-            throw error;
-        }
+    return {
+        id: userDocument?._id,
+        firstName: userDocument?.firstName,
+        lastName: userDocument?.lastName,
+        email: userDocument?.email,
+        age: userDocument?.age,
+        password: userDocument?.password
     }
+  }
+
+  async create(data)
+  {
+    const userDocument = await userSchema.create(data);
+
+    return {
+        id: userDocument._id,
+        firstName: userDocument.firstName,
+        lastName: userDocument.lastName,
+        email: userDocument.email,
+        age: userDocument.age,
+        password: userDocument.password,
+    }
+  }
+
+  async updateOne(id, data)
+  {
+    const userDocument = await userSchema.findOneAndUpdate({ _id: id }, data, { new: true});
+
+    if(!userDocument)
+    {
+      throw new Error('User dont exist.');
+    }
+
+    return {
+        id: userDocument._id,
+        firstName: userDocument.firstName,
+        lastName: userDocument.lastName,
+        email: userDocument.email,
+        age: userDocument.age
+    }
+  }
+
+  async deleteOne(id)
+  {
+    return userSchema.deleteOne({ _id: id });
+  }
 }
 
 export default UserDao;
