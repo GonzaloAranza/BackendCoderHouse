@@ -1,8 +1,6 @@
 import { Router } from "express";
 import { check } from "express-validator";
 import inputsValidation from "../middlewares/inputsValidate.js";
-
-
 import { login, logout, signup } from "../controllers/sessionController.js";
 
 const sessionRouter = Router();
